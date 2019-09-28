@@ -1,0 +1,11 @@
+StaffID,StaffName,Designation,NIC,Address,Salary,BankAccountNumber,LoginPassword
+1,Ismail Vohra,Manager,1234561234561,"DHA, Karachi",1000,1234578,pass123
+2,Saman Gaziani,Manager,1234561231231,"Gulberg, Karachi",2000,2847734,pass456
+3,Emad Abid,Administrator,1264757384673,"Karimabad, Karachi",3000,8487474,hello
+4,Waseem Khan,Marketing Director,1737478462736,"Gulberg, Lahore",4000,8384637,1234
+5,Gulab Khan,Finance Director,7374273763747,"Liberty, Lahore",5000,9274294,8hfeh
+6,Saleha Sikandar,Finance Director,7274826484728,"F-8, Islamabad",1000,2949472,bdgw7
+7,Ahmed Baloch,IT Manager,7264826483826,"Ayesha Manzil, Karachi",1500,2938749,bdvs7
+8,Sami Qadeer,IT Manager,7274827486264,"Clifton, Karachi",2000,7473847,bdjs8
+9,Abdullah Khan,Outreach Director,1237476472222,"Atta Bahn Road, Hyderabad",8000,3737493,hfks8
+10,Ashraf Wathra,Sponsorship Director,2737463736473,"F-9, Islamabad",9000,8474937,bjsgf8

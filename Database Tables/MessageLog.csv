@@ -1,0 +1,6 @@
+MessageID,Network_WeakEntity_Networks_idNetworks,Network_WeakEntity_Customer_UserID,DateTime_2,Rate,PackageDiscount
+1,2,2,2/2/2017 8:12,5,100
+2,3,4,2/10/2017 12:00,5,200
+3,4,3,2/11/2016 9:00,5,300
+4,5,1,10/5/2017 11:11,5,400
+5,1,5,1/5/2017 6:00,5,500

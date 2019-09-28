@@ -1,0 +1,6 @@
+PaymentID,Network_WeakEntity_Networks_idNetworks,Network_WeakEntity_Customer_UserID,MonthYear,Total_Bill
+1,2,2,16-Aug,2000
+2,3,4,17-Oct,5000
+3,4,3,17-Sep,2000
+4,5,1,17-Jan,3000
+5,1,5,17-Nov,2000

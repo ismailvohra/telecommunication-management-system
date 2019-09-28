@@ -1,0 +1,133 @@
+CREATE TABLE Message_Type (
+  Message_Type_ID INTEGER   NOT NULL ,
+  Type_Name VARCHAR(20)    ,
+  Rate/Message INTEGER      ,
+PRIMARY KEY(Message_Type_ID));
+
+
+
+
+CREATE TABLE User_Details (
+  User_ID INTEGER   NOT NULL ,
+  User_Number INTEGER    ,
+  User_NIC INTEGER    ,
+  User_Type INTEGER    ,
+  User_Network INTEGER      ,
+PRIMARY KEY(User_ID));
+
+
+
+
+CREATE TABLE Call_Type (
+  Call_Type_ID INTEGER   NOT NULL ,
+  Type_Name VARCHAR(20)    ,
+  Rate/Min INTEGER      ,
+PRIMARY KEY(Call_Type_ID));
+
+
+
+
+CREATE TABLE Payment (
+  Payment_ID INTEGER   NOT NULL ,
+  User_Details_User_ID INTEGER   NOT NULL ,
+  Month/Year INTEGER    ,
+  Total_Bill INTEGER      ,
+PRIMARY KEY(Payment_ID)  ,
+  FOREIGN KEY(User_Details_User_ID)
+    REFERENCES User_Details(User_ID));
+
+
+CREATE INDEX Payment_FKIndex1 ON Payment (User_Details_User_ID);
+
+
+CREATE INDEX IFK_User/Payment ON Payment (User_Details_User_ID);
+
+
+CREATE TABLE Call_Record (
+  Call_ID INTEGER   NOT NULL ,
+  Call_Type_ID INTEGER   NOT NULL ,
+  User2_ID INTEGER   NOT NULL ,
+  User1_ID INTEGER   NOT NULL ,
+  Date/Time DATETIME    ,
+  Call_Duration INTEGER      ,
+PRIMARY KEY(Call_ID)      ,
+  FOREIGN KEY(User1_ID)
+    REFERENCES User_Details(User_ID),
+  FOREIGN KEY(User2_ID)
+    REFERENCES User_Details(User_ID),
+  FOREIGN KEY(Call_Type_ID)
+    REFERENCES Call_Type(Call_Type_ID));
+
+
+CREATE INDEX Call_Record_FKIndex1 ON Call_Record (User1_ID);
+CREATE INDEX Call_Record_FKIndex2 ON Call_Record (User2_ID);
+CREATE INDEX Call_Record_FKIndex3 ON Call_Record (Call_Type_ID);
+
+
+CREATE INDEX IFK_User1/Call_Record ON Call_Record (User1_ID);
+CREATE INDEX IFK_User2/Call_Record ON Call_Record (User2_ID);
+CREATE INDEX IFK_Call_Type/Call_Record ON Call_Record (Call_Type_ID);
+
+
+CREATE TABLE Message_Record (
+  Message_ID INTEGER   NOT NULL ,
+  Message_Type_ID INTEGER   NOT NULL ,
+  User2_ID INTEGER   NOT NULL ,
+  User1_ID INTEGER   NOT NULL ,
+  Date/Time DATETIME      ,
+PRIMARY KEY(Message_ID)      ,
+  FOREIGN KEY(User1_ID)
+    REFERENCES User_Details(User_ID),
+  FOREIGN KEY(User2_ID)
+    REFERENCES User_Details(User_ID),
+  FOREIGN KEY(Message_Type_ID)
+    REFERENCES Message_Type(Message_Type_ID));
+
+
+CREATE INDEX Message_Record_FKIndex1 ON Message_Record (User1_ID);
+CREATE INDEX Message_Record_FKIndex2 ON Message_Record (User2_ID);
+CREATE INDEX Message_Record_FKIndex3 ON Message_Record (Message_Type_ID);
+
+
+CREATE INDEX IFK_User1/Message_Record ON Message_Record (User1_ID);
+CREATE INDEX IFK_User2/Message_Record ON Message_Record (User2_ID);
+CREATE INDEX IFK_Message_Type/Message_Recor ON Message_Record (Message_Type_ID);
+
+
+CREATE TABLE Payment_Message (
+  Payment_ID INTEGER   NOT NULL ,
+  Message_Record_Message_ID INTEGER   NOT NULL   ,
+PRIMARY KEY(Payment_ID, Message_Record_Message_ID)    ,
+  FOREIGN KEY(Payment_ID)
+    REFERENCES Payment(Payment_ID),
+  FOREIGN KEY(Message_Record_Message_ID)
+    REFERENCES Message_Record(Message_ID));
+
+
+CREATE INDEX Payment/Message_FKIndex1 ON Payment_Message (Payment_ID);
+CREATE INDEX Payment/Message_FKIndex2 ON Payment_Message (Message_Record_Message_ID);
+
+
+CREATE INDEX IFK_Payment/Payment_Message ON Payment_Message (Payment_ID);
+CREATE INDEX IFK_Payment_Message/Payment ON Payment_Message (Message_Record_Message_ID);
+
+
+CREATE TABLE Payment_Call (
+  Payment_ID INTEGER   NOT NULL ,
+  Call_Record_Call_ID INTEGER   NOT NULL ,
+  Bill INTEGER      ,
+PRIMARY KEY(Payment_ID, Call_Record_Call_ID)    ,
+  FOREIGN KEY(Payment_ID)
+    REFERENCES Payment(Payment_ID),
+  FOREIGN KEY(Call_Record_Call_ID)
+    REFERENCES Call_Record(Call_ID));
+
+
+CREATE INDEX Payment/Call_FKIndex1 ON Payment_Call (Payment_ID);
+CREATE INDEX Payment/Call_FKIndex2 ON Payment_Call (Call_Record_Call_ID);
+
+
+CREATE INDEX IFK_Payment/Payment_Call ON Payment_Call (Payment_ID);
+CREATE INDEX IFK_Payement_Call/CallRecord ON Payment_Call (Call_Record_Call_ID);
+
+
